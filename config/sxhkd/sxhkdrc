@@ -1,0 +1,139 @@
+# ╔══════════════════════════════╗
+# ║  sxhkdrc — archHeimdall     ║
+# ║  Hu Tao Theme — 720p        ║
+# ╚══════════════════════════════╝
+
+# ── Reload sxhkd ─────────────────
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# ── Apps ─────────────────────────
+super + z
+    kitty
+
+super + shift + Return
+    bspc rule -a kitty -o state=floating && kitty
+
+super + h
+    kitty -e fish -c "hermes; exec fish"
+
+super + w
+    nemo
+
+super + n
+    firefox
+
+super + space
+    rofi -show drun
+
+super + shift + space
+    rofi -show window
+
+super + b
+    kitty -e nvim ~/.config/bspwm/bspwmrc    
+
+# ── Screenshot ────────────────────
+Print
+    flameshot full -p ~/Pictures/Screenshots/
+
+super + p
+    flameshot gui
+
+# ── Volume ────────────────────────
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# ══════════════════════════════════
+# BSPWM — Window Management
+# ══════════════════════════════════
+
+# ── Tutup Window ──────────────────
+super + x
+    bspc node -c
+
+super + shift + q
+    bspc node -k
+
+# ── State Window ──────────────────
+super + s
+    bspc node -t '~floating'
+
+super + f
+    bspc node -t fullscreen
+
+super + t
+    bspc node -t tiled
+
+super + m
+    bspc desktop -l next
+
+# ── Fokus Window ──────────────────
+super + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
+
+super + {a,s,d,w}
+    bspc node -f {west,south,east,north}
+
+# ── Pindah Window ─────────────────
+super + shift + {Left,Down,Up,Right}
+    bspc node -s {west,south,north,east}
+
+super + shift + {a,s,d,w}
+    bspc node -s {west,south,east,north}
+
+# ── Resize Window ─────────────────
+super + alt + Left
+    bspc node -z left -20 0 || bspc node -z right -20 0
+
+super + alt + Down
+    bspc node -z bottom 0 20 || bspc node -z top 0 20
+
+super + alt + Up
+    bspc node -z top 0 -20 || bspc node -z bottom 0 -20
+
+super + alt + Right
+    bspc node -z right 20 0 || bspc node -z left 20 0
+
+# ── Gap ───────────────────────────
+super + equal
+    bspc config window_gap $(( $(bspc config window_gap) + 2 ))
+
+super + minus
+    bspc config window_gap $(( $(bspc config window_gap) - 2 ))
+
+# ── Preselect ─────────────────────
+super + ctrl + {Left,Down,Up,Right}
+    bspc node -p {west,south,north,east}
+
+super + ctrl + space
+    bspc node -p cancel
+
+# ── Workspace ─────────────────────
+super + {1,2,3,4,5,6,7,8,9,0}
+    bspc desktop -f '^{1,2,3,4,5,6,7,8,9,10}'
+
+super + shift + {1,2,3,4,5,6,7,8,9,0}
+    bspc node -d '^{1,2,3,4,5,6,7,8,9,10}'
+
+super + bracketleft
+    bspc desktop -f prev.local
+
+super + bracketright
+    bspc desktop -f next.local
+
+# ── Rotate ────────────────────────
+super + r
+    bspc node @/ -R 90
+
+# ── BSPWM Control ─────────────────
+super + shift + r
+    bspc wm -r
+
+super + shift + e
+    bspc quit

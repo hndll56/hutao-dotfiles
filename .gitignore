@@ -1,0 +1,16 @@
+# caches / logs / temp
+cache/
+.cache/
+*.log
+*.tmp
+*~
+.DS_Store
+
+# editor / tooling
+.vscode/
+.idea/
+
+# git
+.git/
+
+# keep dotfiles repo clean

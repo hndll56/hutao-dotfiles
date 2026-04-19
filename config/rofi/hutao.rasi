@@ -1,0 +1,105 @@
+/* 
+ * Hu Tao Theme - Native Rofi Style 
+ */
+
+configuration {
+    modi: "drun";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    drun-display-format: "{name}";
+    display-drun: "";
+    sidebar-mode: false;
+}
+
+* {
+  font: "JetBrainsMono Nerd Font 10";
+
+  bg0     : #1a0a0a;
+  bg1     : #2d1010;
+  bg2     : #3d1515;
+  bg3     : #5a2020;
+
+  fg0     : #fdf0e0;
+  fg1     : #f5d5c0;
+  fg2     : #b89286;
+
+  red     : #c0392b;
+  orange  : #e05c1a;
+  gold    : #d4a017;
+  inactive: #5a2020;
+
+  accent  : #c0392b;
+  urgent  : #e05c1a;
+
+  background-color : transparent;
+  text-color       : @fg0;
+
+  margin  : 0;
+  padding : 0;
+  spacing : 0;
+}
+
+element-icon, element-text, scrollbar {
+  cursor: pointer;
+}
+
+window {
+  location : northwest;
+  width    : 260px;
+  x-offset : 2%;
+  y-offset  : 45px;
+
+  background-color: @bg1;
+  border          : 1px;
+  border-color    : @accent;
+  border-radius   : 8px;
+}
+
+inputbar {
+  spacing  : 8px;
+  padding  : 6px 8px;
+  children : [ prompt, entry ];
+
+  background-color: @bg0;
+  border-radius   : 8px 8px 0 0;
+}
+
+entry {
+  text-color      : @fg0;
+  placeholder     : "Search...";
+  placeholder-color: @inactive;
+}
+
+listview {
+  padding      : 4px 0px;
+  lines        : 10;
+  columns      : 1;
+  scrollbar    : true;
+  fixed-height : false;
+  dynamic      : true;
+}
+
+element {
+  padding : 5px 8px;
+  spacing : 8px;
+}
+
+element selected {
+  text-color       : @fg0;
+  background-color : @accent;
+  border-radius    : 4px;
+}
+
+element-icon {
+  size: 0.8em;
+}
+
+element-text {
+  text-color: inherit;
+}
+
+scrollbar {
+  handle-width : 3px;
+  handle-color : @accent;
+  padding      : 0 4px;
+}

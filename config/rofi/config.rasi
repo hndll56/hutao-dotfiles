@@ -1,0 +1,4 @@
+
+//@theme "/usr/share/rofi/themes/arthur.rasi"
+
+@theme "$HOME/.local/share/rofi/themes/simple-tokyonight.rasi"

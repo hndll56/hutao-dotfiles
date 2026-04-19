@@ -1,0 +1,65 @@
+[global]
+  # Define your Gruvbox color palette here
+  # You can find the Gruvbox palette online (e.g., on GitHub)
+  # Example Gruvbox Dark Hard colors:
+  bg = "#1d2021"
+  fg = "#ebdbb2"
+  frame_color = "#d65d0e" # Gruvbox orange for global frame
+  separator_color = frame
+  highlight = "#d65d0e" # Gruvbox orange for highlight
+
+  font = "Monospace 9"
+  markup = full
+  format = "<b>%s</b>\n%b"
+%b"
+
+  alignment = left
+  word_wrap = yes
+  origin = bottom-right
+  offset = 10x10
+  width = 250
+  height = 40
+
+  origin = bottom-right
+  offset = 10x10
+  width = 250
+  height = 40
+  notification_limit = 5
+
+  transparency = 0
+
+  corner_radius = 0
+  ignore_dbus_close = false
+
+  sticky_history = yes
+  history_length = 20
+
+  show_age_threshold = 60
+
+  separator_height = 2
+  padding = 8
+  horizontal_padding = 8
+
+  line_height = 0
+
+  icon_position = left
+  icon_spacing = 10
+
+  # Experimental options
+  force_xwayland = no
+
+[urgency_low]
+  background = "#1d2021" # Gruvbox dark hard background
+  foreground = "#ebdbb2" # Gruvbox foreground
+  frame_color = "#83a598" # Gruvbox green for low urgency
+
+[urgency_normal]
+  background = "#1d2021" # Gruvbox dark hard background
+  foreground = "#ebdbb2" # Gruvbox foreground
+  frame_color = "#d65d0e" # Gruvbox orange for normal urgency
+
+[urgency_critical]
+  background = "#1d2021" # Gruvbox dark hard background
+  foreground = "#ebdbb2" # Gruvbox foreground
+  frame_color = "#cc241d" # Gruvbox red for critical urgency
+  timeout = 0

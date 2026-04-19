@@ -1,0 +1,115 @@
+/* 
+ * Gruvbox Theme - Dropdown Style (based on your layout)
+ */
+
+configuration {
+    modi: "drun";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    drun-display-format: "{name}";
+    display-drun: "";
+    sidebar-mode: false;
+}
+
+* {
+  font: "JetBrainsMono Nerd Font 10";
+
+  /* ── Gruvbox ── */
+  bg0     : #282828;
+  bg1     : #3c3836;
+  bg2     : #504945;
+  bg3     : #665c54;
+
+  fg0     : #ebdbb2;
+  fg1     : #d5c4a1;
+  fg2     : #bdae93;
+
+  red     : #cc241d;
+  orange  : #d65d0e;
+  yellow  : #d79921;
+  inactive: #7c6f64;
+
+  accent  : #fe8019;
+  urgent  : #fb4934;
+
+  background-color : transparent;
+  text-color       : @fg0;
+
+  margin  : 0;
+  padding : 0;
+  spacing : 0;
+}
+
+element-icon, element-text, scrollbar {
+  cursor: pointer;
+}
+
+/* ── Window (tetap kiri atas) ── */
+window {
+  location : northwest;
+  width    : 260px;
+  x-offset : 2%;
+  y-offset : 40px; /* disesuaikan polybar 28px */
+
+  background-color: @bg1;
+  border          : 2px;
+  border-color    : @bg3;
+  border-radius   : 8px;
+}
+
+/* ── Input ── */
+inputbar {
+  spacing  : 8px;
+  padding  : 6px 10px;
+  children : [ prompt, entry ];
+
+  background-color: @bg0;
+  border-radius   : 8px 8px 0 0;
+}
+
+entry {
+  text-color       : @fg0;
+  placeholder      : "Search...";
+  placeholder-color: @inactive;
+}
+
+/* ── List ── */
+listview {
+  padding      : 4px 0px;
+  lines        : 8;   /* lebih pas 720p */
+  columns      : 1;
+  scrollbar    : true;
+  fixed-height : false;
+  dynamic      : true;
+
+  background-color: @bg1;
+}
+
+/* ── Item ── */
+element {
+  padding : 6px 10px;
+  spacing : 8px;
+}
+
+/* Selected (dibenerin biar tidak terlalu terang) */
+element selected {
+  text-color       : @bg0;
+  background-color : @yellow;
+  border-radius    : 6px;
+}
+
+/* Icon & text */
+element-icon {
+  size: 0.8em;
+}
+
+element-text {
+  text-color: inherit;
+}
+
+/* ── Scrollbar ── */
+scrollbar {
+  handle-width : 4px;
+  handle-color : @bg3;
+  padding      : 0 4px;
+}
