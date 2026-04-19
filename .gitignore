@@ -14,3 +14,9 @@ cache/
 .git/
 
 # keep dotfiles repo clean
+
+# --- exclude local binaries / symlinks from ~/.local/bin ---
+scripts/uv
+scripts/uvx
+scripts/python3.11
+scripts/hermes
