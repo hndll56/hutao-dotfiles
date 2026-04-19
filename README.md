@@ -1,5 +1,9 @@
 # Hutao Dotfiles
 
+<p align="center">
+  <img src="assets/preview.jpg" alt="preview" width="900">
+</p>
+
 Dotfiles BSPWM pribadi (ricing) untuk Arch Linux.
 
 - Target desain: **1280x720 (720p)**
