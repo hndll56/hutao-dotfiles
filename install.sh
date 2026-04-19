@@ -168,7 +168,6 @@ main() {
   run_step "fc-cache -fv" fc-cache -fv || die "fc-cache gagal"
 
   # Non-fatal readiness checks (config references)
-  check_step "check pywal cache: $HOME/.cache/wal/colors.sh" test -f "$HOME/.cache/wal/colors.sh"
   check_step "check AudioRelay: $HOME/portable/bin/AudioRelay" test -x "$HOME/portable/bin/AudioRelay"
   check_step "check rofi theme: $HOME/.local/share/rofi/themes/simple-tokyonight.rasi" test -f "$HOME/.local/share/rofi/themes/simple-tokyonight.rasi"
 

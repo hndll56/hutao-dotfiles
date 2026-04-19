@@ -97,9 +97,10 @@ Beberapa hal memang bergantung environment (ini sesuai config asli):
    - Polybar theme `hack` memakai interface `ens33` (lihat `config/polybar/hack/modules.ini`).
    - Kalau interface kamu beda (misal `wlan0`, `enpXsY`), ganti manual di file itu.
 
-2) **pywal**
-   - `bspwmrc` memanggil: `$HOME/.cache/wal/colors.sh`
-   - Kalau file itu tidak ada, tinggal generate pywal atau hapus bagian itu (sesuai kebutuhan kamu).
+2) **pywal (opsional / legacy)**
+   - Di `bspwmrc` ada pemanggilan: `$HOME/.cache/wal/colors.sh`
+   - Kalau kamu memang nggak pakai pywal, ini bisa diabaikan. Kalau file itu tidak ada, biasanya cuma muncul error kecil di stderr tapi session tetap lanjut.
+   - Kalau mau benar-benar bersih, kamu bisa comment/hapus bagian itu di `bspwmrc` (sesuai kebutuhan kamu).
 
 3) **AudioRelay**
    - `bspwmrc` menjalankan: `$HOME/portable/bin/AudioRelay &`
