@@ -102,9 +102,10 @@ Beberapa hal memang bergantung environment (ini sesuai config asli):
    - Kalau kamu memang nggak pakai pywal, ini bisa diabaikan. Kalau file itu tidak ada, biasanya cuma muncul error kecil di stderr tapi session tetap lanjut.
    - Kalau mau benar-benar bersih, kamu bisa comment/hapus bagian itu di `bspwmrc` (sesuai kebutuhan kamu).
 
-3) **AudioRelay**
+3) **AudioRelay (opsional / device-specific)**
    - `bspwmrc` menjalankan: `$HOME/portable/bin/AudioRelay &`
-   - Kalau kamu tidak punya binary tersebut, step install tetap jalan tapi AudioRelay tidak akan start.
+   - Ini biasanya cuma relevan di device yang memang punya binary AudioRelay di path tersebut.
+   - Di device lain, install tetap jalan; paling AudioRelay tidak akan start (abaikan saja atau sesuaikan di `bspwmrc`).
 
 ---
 
