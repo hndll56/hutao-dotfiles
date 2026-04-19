@@ -7,7 +7,7 @@ Dotfiles BSPWM pribadi (ricing) untuk Arch Linux.
 - Bar: **polybar** (default: `hutao-main`)
 - Launcher: **rofi**
 - Terminal: **kitty**
-- Compositor: **picom**
+- Compositor: **picom (ft-labs)**
 - Notification: **dunst**
 - Shell: **fish**
 - Editor: **neovim**
@@ -44,6 +44,8 @@ Semua dependency ada di `packages.txt` dan otomatis di-install oleh `install.sh`
 
 - **Official repo (pacman)**: `pacman -S --needed`
 - **AUR (yay)**: `yay -S --needed` (script akan install yay jika belum ada)
+
+Catatan: compositor yang dipakai adalah **picom-ftlabs-git (AUR)**.
 
 ---
 

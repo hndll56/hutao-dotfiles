@@ -7,7 +7,6 @@ sxhkd
 polybar
 rofi
 kitty
-picom
 dunst
 fish
 neovim
@@ -26,3 +25,4 @@ polkit-gnome
 aur
 eww
 nitrogen
+picom-ftlabs-git
