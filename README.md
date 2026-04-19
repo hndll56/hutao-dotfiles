@@ -1,4 +1,5 @@
-#Hutao-Dotfiles
+# HUTAO DOTFILES
+## bspwm rice for Arch Linux (720p setup)
          
 <p align="center">
   <img src="assets/preview.jpg" alt="preview" width="900">
