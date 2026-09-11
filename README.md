@@ -1,136 +1,199 @@
 # HUTAO DOTFILES
 ## bspwm rice for Arch Linux (720p setup)
-         
+
 <p align="center">
-  <img src="assets/preview.jpg" alt="preview" width="900">
+  <img src="assets/preview.jpg" alt="Hutao dotfiles preview" width="900">
 </p>
 
-Dotfiles BSPWM pribadi (ricing) untuk Arch Linux.
+Personal Arch Linux dotfiles for a lightweight, anime-inspired BSPWM desktop. This repository is a snapshot of an active configuration rather than a universal theme, so some hardware- and user-specific values may need adjustment.
 
-- Target desain: **1280x720 (720p)**
-- WM: **bspwm** + **sxhkd**
-- Bar: **polybar** (default: `hutao-main`)
-- Launcher: **rofi**
-- Terminal: **kitty**
-- Compositor: **picom (ft-labs)**
-- Notification: **dunst**
-- Shell: **fish**
-- Editor: **neovim**
+## Features
 
-> Catatan: repo ini adalah hasil salinan dari config aktif. Tidak membuat tema/config baru.
+- **Window manager:** bspwm
+- **Hotkeys:** sxhkd
+- **Status bar:** polybar (`hutao-main` by default)
+- **Launcher:** rofi
+- **Terminal:** kitty
+- **Compositor:** picom-ftlabs-git
+- **Notifications:** dunst
+- **Shell:** fish
+- **Editor:** Neovim
+- **Target resolution:** 1280×720 (720p)
 
----
+> The layout, spacing, font sizes, and bar dimensions are tuned for 720p. Other resolutions may require manual adjustments.
 
-## Preview / Notes
+## Preview and Screenshots
 
-- Polybar launch default:
-  - `~/.config/polybar/launch.sh --hutao`
-- Konfigurasi ini dibuat untuk 720p, jadi padding/ukuran bar/font akan terasa paling pas di resolusi itu.
+The main preview is available at [`assets/preview.jpg`](assets/preview.jpg). Add more screenshots or GIFs to `assets/` if you want to document alternate layouts.
 
----
+## Repository Structure
 
-## Struktur Repo
-
-```
+```text
 .
-├── config/        # isi ~/.config/ (bspwm, sxhkd, polybar, rofi, kitty, picom, dunst, fish, nvim)
-├── scripts/       # isi ~/.local/bin/ (yang portable)
-├── fonts/         # isi ~/.local/share/fonts/
-├── wallpapers/    # wallpaper (akan masuk ke ~/Pictures/Wallpapers)
-├── packages.txt   # dependency (official + AUR)
-└── install.sh     # installer otomatis (pacman + yay)
+├── config/        # Files restored into ~/.config/
+├── scripts/       # Portable user scripts restored into ~/.local/bin/
+├── fonts/         # Fonts restored into ~/.local/share/fonts/
+├── wallpapers/    # Wallpapers copied into ~/Pictures/Wallpapers/
+├── packages.txt   # Official repository and AUR dependencies
+├── install.sh     # Installation and restore script
+└── README.md      # Project documentation
 ```
 
----
+## How the Configuration Works
 
-## Dependency
+The desktop session is built from several independent programs:
 
-Semua dependency ada di `packages.txt` dan otomatis di-install oleh `install.sh`.
+```text
+bspwm
+├── sxhkd   → keyboard shortcuts and commands
+├── polybar → workspaces, system information, and controls
+├── rofi    → application launcher
+├── kitty   → terminal
+├── picom   → transparency and compositing
+└── dunst   → desktop notifications
+```
 
-- **Official repo (pacman)**: `pacman -S --needed`
-- **AUR (yay)**: `yay -S --needed` (script akan install yay jika belum ada)
+The files in `config/` mirror the usual locations under `~/.config/`. The installer copies these files to their runtime locations, while scripts, fonts, and wallpapers are copied to their respective directories.
 
-Catatan: compositor yang dipakai adalah **picom-ftlabs-git (AUR)**.
+## Requirements
 
----
+- Arch Linux or an Arch-based distribution
+- A working X11 session
+- Git
+- `pacman`
+- `yay` for AUR packages (the installer can install it when needed)
+- A BSPWM-compatible login/session setup
 
-## Cara Install (Recommended)
+Wayland is not the target environment for this configuration because it uses X11-oriented components such as BSPWM and sxhkd.
 
-> Saran: backup dulu config lama kamu, karena install akan menimpa/merge isi folder target.
+## Installation
 
-1) Clone repo:
+> Back up existing configuration files before installing. The script may overwrite or merge files in the target directories.
 
 ```bash
 git clone https://github.com/hndll56/hutao-dotfiles.git
 cd hutao-dotfiles
-```
-
-2) Jalankan installer:
-
-```bash
 chmod +x install.sh
 ./install.sh
 ```
 
-Hasil restore:
-- `config/*`  → `~/.config/`
+The installer restores:
+
+- `config/*` → `~/.config/`
 - `scripts/*` → `~/.local/bin/`
-- `fonts/*`   → `~/.local/share/fonts/`
+- `fonts/*` → `~/.local/share/fonts/`
 - `wallpapers/*` → `~/Pictures/Wallpapers/`
 
-Script juga akan menjalankan:
-- `fc-cache -fv`
+It also refreshes the font cache with `fc-cache -fv`.
 
----
+## First Run
 
-## Setelah Install
-
-- Reload bspwm / sxhkd sesuai kebiasaan kamu.
-- Kalau polybar belum muncul:
+After installation, start or reload BSPWM and sxhkd according to your session setup. If Polybar does not start automatically, run:
 
 ```bash
 ~/.config/polybar/launch.sh --hutao
 ```
 
----
+If a shortcut does not work, check `~/.config/sxhkd/sxhkdrc`. If a bar module fails, inspect the relevant Polybar module configuration and adapt it to your hardware.
 
-## Catatan Penting (Portable / Hardcoded)
+## Customization Guide
 
-Beberapa hal memang bergantung environment (ini sesuai config asli):
+### Change the wallpaper
 
-1) **Network interface**
-   - Polybar theme `hack` memakai interface `ens33` (lihat `config/polybar/hack/modules.ini`).
-   - Kalau interface kamu beda (misal `wlan0`, `enpXsY`), ganti manual di file itu.
+Replace or add images in `wallpapers/`, then update the wallpaper command in the BSPWM configuration if necessary.
 
-2) **pywal (opsional / legacy)**
-   - Di `bspwmrc` ada pemanggilan: `$HOME/.cache/wal/colors.sh`
-   - Kalau kamu memang nggak pakai pywal, ini bisa diabaikan. Kalau file itu tidak ada, biasanya cuma muncul error kecil di stderr tapi session tetap lanjut.
-   - Kalau mau benar-benar bersih, kamu bisa comment/hapus bagian itu di `bspwmrc` (sesuai kebutuhan kamu).
+### Change Polybar
 
-3) **AudioRelay (opsional / device-specific)**
-   - `bspwmrc` menjalankan: `$HOME/portable/bin/AudioRelay &`
-   - Ini biasanya cuma relevan di device yang memang punya binary AudioRelay di path tersebut.
-   - Di device lain, install tetap jalan; paling AudioRelay tidak akan start (abaikan saja atau sesuaikan di `bspwmrc`).
+The default launch command is:
 
----
+```bash
+~/.config/polybar/launch.sh --hutao
+```
+
+To change colors, fonts, spacing, or modules, inspect the relevant files under `config/polybar/`. Different themes may have different module files.
+
+### Change keyboard shortcuts
+
+Edit:
+
+```text
+config/sxhkd/sxhkdrc
+```
+
+The file is copied to `~/.config/sxhkd/sxhkdrc`. After editing, reload sxhkd or restart the session.
+
+### Change BSPWM behavior
+
+Edit the BSPWM configuration under:
+
+```text
+config/bspwm/
+```
+
+Common changes include border width, gaps, rules, desktops, and startup applications.
+
+### Add scripts
+
+Place executable scripts in `scripts/`. They will be installed into `~/.local/bin/`. Prefer portable paths and document required commands at the top of each script.
+
+## Portability Notes
+
+Some values are intentionally inherited from the original machine and may need editing:
+
+1. **Network interface** — The Polybar `hack` theme uses `ens33` in `config/polybar/hack/modules.ini`. Replace it with your interface, such as `wlan0` or `enpXsY`.
+2. **pywal** — `bspwmrc` references `$HOME/.cache/wal/colors.sh`. This is optional legacy behavior. Install pywal or comment out the reference if it is not used.
+3. **AudioRelay** — `bspwmrc` starts `$HOME/portable/bin/AudioRelay` when present. Remove or change this line if AudioRelay is not installed.
+4. **Hardware modules** — Battery, temperature, audio, and network modules may use device-specific names or paths.
+5. **Fonts** — If the appearance differs, verify that the fonts in `fonts/` are installed and run `fc-cache -fv`.
 
 ## Troubleshooting
 
-- `git push` minta password:
-  - GitHub sudah tidak pakai password login untuk git HTTPS.
-  - Pakai Personal Access Token (PAT) sebagai password.
+### Polybar does not appear
 
-- Fonts tidak kebaca:
+```bash
+~/.config/polybar/launch.sh --hutao
+```
+
+Then check the terminal output for missing modules or invalid hardware names.
+
+### Fonts are missing
 
 ```bash
 fc-cache -fv
 ```
 
-- Polybar crash / module error:
-  - Cek module hardware path (network/battery/temperature) sesuai device.
+Restart applications after refreshing the font cache.
 
----
+### A module reports an error
 
-## Lisensi
+Open the corresponding file under `config/polybar/` and check interface names, battery paths, temperature sensors, and required commands.
 
-Personal dotfiles. Pakai, modif, dan fork sesukamu.
+### Permission denied for a script
+
+```bash
+chmod +x ~/.local/bin/<script-name>
+```
+
+## Contributing
+
+Fork the repository, create a branch for your change, test it on your own setup, and open a Pull Request. Keep changes focused and document hardware-specific assumptions. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the complete workflow.
+
+## Credits
+
+This configuration uses and is built around the following projects:
+
+- [bspwm](https://github.com/baskerville/bspwm) — Tiling window manager.
+- [sxhkd](https://github.com/baskerville/sxhkd) — Simple X hotkey daemon.
+- [polybar](https://github.com/polybar/polybar) — Status bar.
+- [rofi](https://github.com/davatorium/rofi) — Application launcher.
+- [kitty](https://github.com/kovidgoyal/kitty) — Terminal emulator.
+- [picom](https://github.com/yshui/picom) — X11 compositor.
+- [dunst](https://github.com/dunst-project/dunst) — Notification daemon.
+- [fish](https://github.com/fish-shell/fish-shell) — Interactive shell.
+- [Neovim](https://github.com/neovim/neovim) — Editor.
+
+Thanks to the maintainers and contributors of these open-source projects.
+
+## License
+
+Personal dotfiles. You are free to use, modify, and fork this repository. Individual dependencies remain under their respective licenses.
