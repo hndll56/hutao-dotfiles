@@ -1,34 +1,37 @@
 #!/usr/bin/env bash
+set -u
 
 dir="$HOME/.config/polybar"
-themes=(`ls --hide="launch.sh" $dir`)
 
-launch_bar() {
-	# Terminate already running bar instances
-	killall -q polybar
-
-	# Wait until the processes have been shut down
-	while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-
-	# Launch the bar
-	polybar -q hutao-main -c "$dir/config.ini" &
+stop_bars() {
+    killall -q polybar 2>/dev/null || true
+    while pgrep -u "$UID" -x polybar >/dev/null 2>&1; do
+        sleep 1
+    done
 }
 
-if [[ "$1" == "--hutao" ]]; then
-	launch_bar
-elif [[ "$1" == "--gruvbox" ]]; then
-	dir="$HOME/.config/polybar"
-	theme="gruvbox"
-	# Terminate already running bar instances
-	killall -q polybar
+launch_bar() {
+    local bar="$1"
+    local config="$2"
 
-	# Wait until the processes have been shut down
-	while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+    [ -f "$config" ] || {
+        printf 'Config Polybar tidak ditemukan: %s\n' "$config" >&2
+        return 1
+    }
 
-	# Launch the bar
-	polybar -q gruvbox-main -c "$dir/$theme/config.ini" &
-else
-	cat <<- EOF
-	Usage : launch.sh --hutao|--gruvbox
-	EOF
-fi
+    stop_bars
+    polybar -q "$bar" -c "$config" &
+}
+
+case "${1:-}" in
+    --hutao)
+        launch_bar hutao-main "$dir/config.ini"
+        ;;
+    --gruvbox)
+        launch_bar gruvbox-main "$dir/gruvbox/config.ini"
+        ;;
+    *)
+        printf 'Usage: %s --hutao|--gruvbox\n' "$0"
+        exit 1
+        ;;
+esac
